@@ -16,3 +16,4 @@ Si se desea ejecutar el proyecto sin descragrar el repositorio completo es impir
   <version>3.5.2</version>
 </dependency>
 ```
+También es importante ajustar el código de a cuerdo a la nueva distribución de carpetas (si es que no se descarga el repositorio completo), ajustanto así cada uno de los archivos descargados por separado.

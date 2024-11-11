@@ -10,6 +10,7 @@ import javax.swing.UIManager;
 /**
  *
  * @author david
+ * Esto ES UN COMENTARIO
  */
 public
         class Formulario1 extends javax.swing.JFrame {
@@ -49,7 +50,6 @@ public
         setMaximumSize(new java.awt.Dimension(370, 370));
         setMinimumSize(new java.awt.Dimension(370, 370));
         setName("Frame"); // NOI18N
-        setPreferredSize(new java.awt.Dimension(370, 370));
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 

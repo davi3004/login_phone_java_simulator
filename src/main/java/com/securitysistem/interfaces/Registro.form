@@ -32,16 +32,16 @@
               <Group type="103" groupAlignment="1" attributes="0">
                   <Component id="jLabel1" min="-2" pref="290" max="-2" attributes="0"/>
                   <Component id="showPassword" min="-2" max="-2" attributes="0"/>
-                  <Component id="jPasswordField1" min="-2" pref="290" max="-2" attributes="0"/>
+                  <Component id="passwordField" min="-2" pref="290" max="-2" attributes="0"/>
                   <Component id="jLabel2" min="-2" pref="290" max="-2" attributes="0"/>
                   <Group type="103" alignment="1" groupAlignment="1" attributes="0">
-                      <Component id="jSpinner1" alignment="1" min="-2" pref="290" max="-2" attributes="0"/>
+                      <Component id="edadSpinner" alignment="1" min="-2" pref="290" max="-2" attributes="0"/>
                       <Group type="103" alignment="0" groupAlignment="1" attributes="0">
                           <Component id="jLabel6" min="-2" pref="290" max="-2" attributes="0"/>
-                          <Component id="jTextField1" min="-2" pref="290" max="-2" attributes="0"/>
+                          <Component id="correoField" min="-2" pref="290" max="-2" attributes="0"/>
                           <Component id="jLabel3" min="-2" pref="290" max="-2" attributes="0"/>
                           <Component id="jLabel5" min="-2" pref="290" max="-2" attributes="0"/>
-                          <Component id="jTextField2" alignment="1" min="-2" pref="290" max="-2" attributes="0"/>
+                          <Component id="nombreField" alignment="1" min="-2" pref="290" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <Component id="jButton1" alignment="1" min="-2" pref="290" max="-2" attributes="0"/>
@@ -58,19 +58,19 @@
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="jTextField2" min="-2" pref="36" max="-2" attributes="0"/>
+              <Component id="nombreField" min="-2" pref="36" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="jTextField1" min="-2" pref="36" max="-2" attributes="0"/>
+              <Component id="correoField" min="-2" pref="36" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="jSpinner1" min="-2" pref="36" max="-2" attributes="0"/>
+              <Component id="edadSpinner" min="-2" pref="36" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="jPasswordField1" min="-2" pref="33" max="-2" attributes="0"/>
+              <Component id="passwordField" min="-2" pref="33" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="showPassword" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="46" max="-2" attributes="0"/>
@@ -99,14 +99,14 @@
         <Property name="text" type="java.lang.String" value="Correo"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="jTextField1">
+    <Component class="javax.swing.JTextField" name="correoField">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Arial" size="12" style="0"/>
         </Property>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextField1ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="correoFieldActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel2">
@@ -117,7 +117,7 @@
         <Property name="text" type="java.lang.String" value="Contrase&#xf1;a"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JPasswordField" name="jPasswordField1">
+    <Component class="javax.swing.JPasswordField" name="passwordField">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Arial" size="12" style="0"/>
@@ -127,7 +127,7 @@
         </Property>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jPasswordField1ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="passwordFieldActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JCheckBox" name="showPassword">
@@ -154,14 +154,14 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JTextField" name="jTextField2">
+    <Component class="javax.swing.JTextField" name="nombreField">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Arial" size="12" style="0"/>
         </Property>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextField2ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="nombreFieldActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel5">
@@ -180,7 +180,7 @@
         <Property name="text" type="java.lang.String" value="Edad"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JSpinner" name="jSpinner1">
+    <Component class="javax.swing.JSpinner" name="edadSpinner">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Arial" size="12" style="0"/>

@@ -1,14 +1,10 @@
 package com.securitysistem.interfaces;
 
 import com.securitysistem.sistemadeseguridad.SistemaDeSeguridad.Formulario1;
-
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 
 public class IniciarSesion extends javax.swing.JPanel {
-
-    /**
-     * Creates new form IniciarSesion
-     */
-    private Formulario1 formularioPrincipal;
 
     public IniciarSesion(Formulario1 formulario) {
         initComponents();
@@ -20,9 +16,9 @@ public class IniciarSesion extends javax.swing.JPanel {
 
         jLabel1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        correoField = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
-        jPasswordField1 = new javax.swing.JPasswordField();
+        passwordField = new javax.swing.JPasswordField();
         showPassword = new javax.swing.JCheckBox();
         jButton1 = new javax.swing.JButton();
 
@@ -38,21 +34,21 @@ public class IniciarSesion extends javax.swing.JPanel {
         jLabel3.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         jLabel3.setText("Correo");
 
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        correoField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                correoFieldActionPerformed(evt);
             }
         });
 
         jLabel2.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         jLabel2.setText("Contraseña");
 
-        jPasswordField1.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        jPasswordField1.setActionCommand(null);
-        jPasswordField1.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
-        jPasswordField1.addActionListener(new java.awt.event.ActionListener() {
+        passwordField.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        passwordField.setActionCommand("null");
+        passwordField.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        passwordField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jPasswordField1ActionPerformed(evt);
+                passwordFieldActionPerformed(evt);
             }
         });
 
@@ -81,14 +77,14 @@ public class IniciarSesion extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGap(48, 48, 48)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(correoField, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                         .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(showPassword)
-                                .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(passwordField, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(62, Short.MAX_VALUE))
@@ -101,11 +97,11 @@ public class IniciarSesion extends javax.swing.JPanel {
                 .addGap(80, 80, 80)
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(correoField, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(passwordField, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(showPassword)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 118, Short.MAX_VALUE)
@@ -114,28 +110,27 @@ public class IniciarSesion extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void correoFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_correoFieldActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_correoFieldActionPerformed
 
-    private void jPasswordField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPasswordField1ActionPerformed
+    private void passwordFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passwordFieldActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jPasswordField1ActionPerformed
+    }//GEN-LAST:event_passwordFieldActionPerformed
 
     private void showPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showPasswordActionPerformed
         if (showPassword.isSelected()) {
-            jPasswordField1.setEchoChar((char) 0);
+            passwordField.setEchoChar((char) 0);
         }
         else {
-            jPasswordField1.setEchoChar('•');
+            passwordField.setEchoChar('•');
         }
     }//GEN-LAST:event_showPasswordActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
 
-        String correo = jTextField1.getText();
-        String password = new String(jPasswordField1.getPassword());
+        String correo = correoField.getText();
+        String password = new String(passwordField.getPassword());
 
         if (!correo.contains("@") || !correo.contains(".")) {
             javax.swing.JOptionPane.showMessageDialog(
@@ -157,31 +152,56 @@ public class IniciarSesion extends javax.swing.JPanel {
                     javax.swing.JOptionPane.ERROR_MESSAGE);
         }
         else {
-            String mensaje = """
-                         Datos de inicio de sesi\u00f3n:
+            try {
+                MessageDigest digest = MessageDigest.getInstance("SHA-256");
+
+                byte[] hash = digest.digest(password.getBytes());
+
+                StringBuilder hexString = new StringBuilder();
+                for (byte b : hash) {
+                    String hex = Integer.toHexString(0xff & b);
+                    if (hex.length() == 1) {
+                        hexString.append('0');
+                    }
+                    hexString.append(hex);
+                }
+                String hashedPassword = hexString.toString();
+
+                String mensaje = """
+                         Datos de inicio de sesión:
                          Correo: """ + correo + "\n"
-                    + "Contraseña: " + password;
+                        + "Contraseña hasheada: " + hashedPassword;
 
-            javax.swing.JOptionPane.showMessageDialog(
-                    this,
-                    mensaje,
-                    "Información de inicio de sesión",
-                    javax.swing.JOptionPane.INFORMATION_MESSAGE
-            );
+                javax.swing.JOptionPane.showMessageDialog(
+                        this,
+                        mensaje,
+                        "Información de inicio de sesión",
+                        javax.swing.JOptionPane.INFORMATION_MESSAGE
+                );
 
-            jTextField1.setText("");
-            jPasswordField1.setText("");
+                correoField.setText("");
+                passwordField.setText("");
+            }
+            catch (NoSuchAlgorithmException e) {
+                e.printStackTrace();
+                javax.swing.JOptionPane.showMessageDialog(
+                        this,
+                        "Error al procesar la contraseña",
+                        "Error",
+                        javax.swing.JOptionPane.ERROR_MESSAGE
+                );
+            }
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField correoField;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JPasswordField jPasswordField1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JPasswordField passwordField;
     private javax.swing.JCheckBox showPassword;
     // End of variables declaration//GEN-END:variables
 }

@@ -5,13 +5,8 @@ import com.securitysistem.interfaces.*;
 import java.awt.BorderLayout;
 import javax.swing.JPanel;
 
-import javax.swing.UIManager;
-
 public class Formulario1 extends javax.swing.JFrame {
 
-    /**
-     * Creates new form páginaPrincipal
-     */
     public Formulario1() {
         initComponents();
         setLocationRelativeTo(null);
@@ -20,7 +15,6 @@ public class Formulario1 extends javax.swing.JFrame {
         setVisible(true);
     }
 
-    // Encargado de iniciar el JPanel
     public void cambiarPanel(JPanel panel) {
         panel.setSize(400, 600);
         panel.setLocation(0, 0);
@@ -96,13 +90,11 @@ public class Formulario1 extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void registrarsebtn(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registrarsebtn
-        // TODO add your handling code here:
         Registro registro = new Registro(this);
         cambiarPanel(registro);
     }//GEN-LAST:event_registrarsebtn
 
     private void iniciarsesionbtn2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_iniciarsesionbtn2ActionPerformed
-        // TODO add your handling code here:
         IniciarSesion initsession = new IniciarSesion(this);
         cambiarPanel(initsession);
     }//GEN-LAST:event_iniciarsesionbtn2ActionPerformed
@@ -121,8 +113,6 @@ public class Formulario1 extends javax.swing.JFrame {
             System.err.println("Se ha fallado al iniciar el Look and Feel");
         }
 
-
-        /* Create and display the form */
         java.awt.EventQueue.invokeLater(() -> {
             new Formulario1().setVisible(true);
         }

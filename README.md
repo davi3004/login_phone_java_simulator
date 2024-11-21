@@ -26,7 +26,7 @@ Este proyecto es un simulador de login y registro en Java que implementa segurid
     ```
     Las entradas se limpian para eliminar comas antes de ser guardadas, evitando conflictos en el formato.
 - **Identificadores únicos**: Cada usuario registrado cuenta con un identificador alfanumérico único que se verifica para evitar duplicados.
-- **Alertas para mostrar datos**: En lugar de mostrar los datos directamente en el formulario (por cuestiones de espacio), se despliega una alerta que contiene la información ingresada por el usuario.
+- **Alertas para mostrar datos**: En lugar de mostrar los datos del usuario directamente en el formulario, se despliega una alerta que contiene la información ingresada previamente por el usuario.
 
 ---
 

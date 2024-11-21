@@ -5,6 +5,10 @@ import com.securitysistem.interfaces.*;
 import java.awt.BorderLayout;
 import javax.swing.JPanel;
 
+import java.io.*;
+import java.util.*;
+import java.time.Year;
+
 public class Formulario1 extends javax.swing.JFrame {
 
     public Formulario1() {
@@ -35,7 +39,7 @@ public class Formulario1 extends javax.swing.JFrame {
         jSeparator1 = new javax.swing.JSeparator();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Formulario1 (Inicio de sesión)");
+        setTitle(" Simulador de login y registro");
         setAlwaysOnTop(true);
         setLocation(new java.awt.Point(0, 0));
         setMaximumSize(new java.awt.Dimension(400, 650));

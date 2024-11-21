@@ -4,6 +4,8 @@ import com.securitysistem.sistemadeseguridad.SistemaDeSeguridad.Formulario1;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
+import com.security.tools.Usuario;
+
 public class IniciarSesion extends javax.swing.JPanel {
 
     public IniciarSesion(Formulario1 formulario) {
@@ -20,7 +22,7 @@ public class IniciarSesion extends javax.swing.JPanel {
         jLabel2 = new javax.swing.JLabel();
         passwordField = new javax.swing.JPasswordField();
         showPassword = new javax.swing.JCheckBox();
-        jButton1 = new javax.swing.JButton();
+        boton = new javax.swing.JButton();
 
         setMaximumSize(new java.awt.Dimension(400, 600));
         setMinimumSize(new java.awt.Dimension(400, 600));
@@ -62,11 +64,11 @@ public class IniciarSesion extends javax.swing.JPanel {
             }
         });
 
-        jButton1.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        jButton1.setText("Iniciar sesión");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        boton.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        boton.setText("Iniciar sesión");
+        boton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                botonActionPerformed(evt);
             }
         });
 
@@ -82,7 +84,7 @@ public class IniciarSesion extends javax.swing.JPanel {
                         .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(boton, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(showPassword)
                                 .addComponent(passwordField, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -105,7 +107,7 @@ public class IniciarSesion extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(showPassword)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 118, Short.MAX_VALUE)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(boton, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(77, 77, 77))
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -127,7 +129,8 @@ public class IniciarSesion extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_showPasswordActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+
+    private void botonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonActionPerformed
 
         String correo = correoField.getText();
         String password = new String(passwordField.getPassword());
@@ -139,7 +142,6 @@ public class IniciarSesion extends javax.swing.JPanel {
                     "Error",
                     javax.swing.JOptionPane.ERROR_MESSAGE
             );
-
         }
         else if (correo.trim().isEmpty()) {
             javax.swing.JOptionPane.showMessageDialog(this, "Por favor, ingrese su correo electrónico.",
@@ -153,6 +155,7 @@ public class IniciarSesion extends javax.swing.JPanel {
         }
         else {
             try {
+
                 MessageDigest digest = MessageDigest.getInstance("SHA-256");
 
                 byte[] hash = digest.digest(password.getBytes());
@@ -167,20 +170,36 @@ public class IniciarSesion extends javax.swing.JPanel {
                 }
                 String hashedPassword = hexString.toString();
 
-                String mensaje = """
-                         Datos de inicio de sesión:
-                         Correo: """ + correo + "\n"
-                        + "Contraseña hasheada: " + hashedPassword;
+                if (!Usuario.existeUsuario(correo)) {
+                    javax.swing.JOptionPane.showMessageDialog(
+                            this,
+                            "Usuario no encontrado, favor de introducir un usuario válido o registrarse.",
+                            "Error",
+                            javax.swing.JOptionPane.ERROR_MESSAGE
+                    );
+                }
+                else if (!Usuario.validarCredenciales(correo, hashedPassword)) {
+                    javax.swing.JOptionPane.showMessageDialog(
+                            this,
+                            "Contraseña incorrecta",
+                            "Error",
+                            javax.swing.JOptionPane.ERROR_MESSAGE
+                    );
+                }
+                else {
 
-                javax.swing.JOptionPane.showMessageDialog(
-                        this,
-                        mensaje,
-                        "Información de inicio de sesión",
-                        javax.swing.JOptionPane.INFORMATION_MESSAGE
-                );
+                    String nombreUsuario = Usuario.getNombreUsuario(correo);
+                    
+                    javax.swing.JOptionPane.showMessageDialog(
+                            this,
+                            "¡Bienvenido/a " + nombreUsuario + "!",
+                            "Inicio de sesión exitoso",
+                            javax.swing.JOptionPane.INFORMATION_MESSAGE
+                    );
 
-                correoField.setText("");
-                passwordField.setText("");
+                    correoField.setText("");
+                    passwordField.setText("");
+                }
             }
             catch (NoSuchAlgorithmException e) {
                 e.printStackTrace();
@@ -192,12 +211,11 @@ public class IniciarSesion extends javax.swing.JPanel {
                 );
             }
         }
-    }//GEN-LAST:event_jButton1ActionPerformed
-
+    }//GEN-LAST:event_botonActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton boton;
     private javax.swing.JTextField correoField;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

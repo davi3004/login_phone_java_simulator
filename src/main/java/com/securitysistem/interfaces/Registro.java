@@ -4,6 +4,9 @@ import com.securitysistem.sistemadeseguridad.SistemaDeSeguridad.Formulario1;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
+import java.io.*;
+import com.security.tools.Usuario;
+
 public class Registro extends javax.swing.JPanel {
 
     public Registro(Formulario1 formulario) {
@@ -20,7 +23,7 @@ public class Registro extends javax.swing.JPanel {
         jLabel2 = new javax.swing.JLabel();
         passwordField = new javax.swing.JPasswordField();
         showPassword = new javax.swing.JCheckBox();
-        jButton1 = new javax.swing.JButton();
+        boton = new javax.swing.JButton();
         nombreField = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
@@ -66,11 +69,11 @@ public class Registro extends javax.swing.JPanel {
             }
         });
 
-        jButton1.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        jButton1.setText("Registrarse");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        boton.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        boton.setText("Registrarse");
+        boton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                botonActionPerformed(evt);
             }
         });
 
@@ -109,7 +112,7 @@ public class Registro extends javax.swing.JPanel {
                             .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(nombreField, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(boton, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(59, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -136,7 +139,7 @@ public class Registro extends javax.swing.JPanel {
                 .addGap(18, 18, 18)
                 .addComponent(showPassword)
                 .addGap(46, 46, 46)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(boton, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(77, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -164,11 +167,11 @@ public class Registro extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_nombreFieldActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void botonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonActionPerformed
 
-        String nombre = nombreField.getText();
-        String correo = correoField.getText();
-        String edad = edadSpinner.getValue().toString();
+        String nombre = nombreField.getText().replace(",", "");
+        String correo = correoField.getText().replace(",", "");
+        String edad = edadSpinner.getValue().toString().replace(",", "");
         String password = new String(passwordField.getPassword());
 
         if (!correo.contains("@") || !correo.contains(".")) {
@@ -178,7 +181,6 @@ public class Registro extends javax.swing.JPanel {
                     "Error",
                     javax.swing.JOptionPane.ERROR_MESSAGE
             );
-
         }
         else if (correo.trim().isEmpty()) {
             javax.swing.JOptionPane.showMessageDialog(this, "Por favor, ingrese su correo electrónico.",
@@ -200,6 +202,12 @@ public class Registro extends javax.swing.JPanel {
                     "Error",
                     javax.swing.JOptionPane.ERROR_MESSAGE);
         }
+        else if (Usuario.existeUsuario(correo)) {
+            javax.swing.JOptionPane.showMessageDialog(this,
+                    "Este correo ya está registrado.",
+                    "Error",
+                    javax.swing.JOptionPane.ERROR_MESSAGE);
+        }
         else {
             try {
                 MessageDigest digest = MessageDigest.getInstance("SHA-256");
@@ -216,28 +224,36 @@ public class Registro extends javax.swing.JPanel {
                 }
                 String hashedPassword = hexString.toString();
 
-                String mensaje = """
-                         Datos de registro:
-                         Nombre: """ + nombre + "\n"
-                        + "Correo: " + correo + "\n"
-                        + "Edad: " + edad + "\n"
-                        + "Contraseña hasheada: " + hashedPassword;
+                try (FileWriter fw = new FileWriter("usuarios.txt", true); BufferedWriter bw = new BufferedWriter(fw)) {
 
-                javax.swing.JOptionPane.showMessageDialog(
-                        this,
-                        mensaje,
-                        "Información de registro",
-                        javax.swing.JOptionPane.INFORMATION_MESSAGE
-                );
+                    bw.write(Usuario.toCsvLine(nombre, correo, Integer.parseInt(edad), hashedPassword));
 
-                nombreField.setText("");
-                correoField.setText("");
-                edadSpinner.setValue(0);
-                passwordField.setText("");
+                    javax.swing.JOptionPane.showMessageDialog(
+                            this,
+                            "Usted ha sido registrado con éxito",
+                            "Éxito",
+                            javax.swing.JOptionPane.INFORMATION_MESSAGE
+                    );
 
+                    nombreField.setText("");
+                    correoField.setText("");
+                    edadSpinner.setValue(0);
+                    passwordField.setText("");
+                }
+                catch (IOException e) {
+                    e.printStackTrace();
+
+                    javax.swing.JOptionPane.showMessageDialog(
+                            this,
+                            "Error al guardar el registro",
+                            "Error",
+                            javax.swing.JOptionPane.ERROR_MESSAGE
+                    );
+                }
             }
             catch (NoSuchAlgorithmException e) {
                 e.printStackTrace();
+
                 javax.swing.JOptionPane.showMessageDialog(
                         this,
                         "Error al procesar la contraseña",
@@ -246,13 +262,12 @@ public class Registro extends javax.swing.JPanel {
                 );
             }
         }
-    }//GEN-LAST:event_jButton1ActionPerformed
-
+    }//GEN-LAST:event_botonActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton boton;
     private javax.swing.JTextField correoField;
     private javax.swing.JSpinner edadSpinner;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

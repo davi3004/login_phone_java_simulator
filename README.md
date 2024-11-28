@@ -10,8 +10,9 @@ Este proyecto es un simulador de login y registro en Java que implementa segurid
 - **v0.1.2**: Primera versión estable con interfaz gráfica básica para login y registro (sin funcionalidad).
 - **v0.2.0**: Versión actual que incluye mejoras en la seguridad y manejo de datos, alertas en lugar de campos de salida en el formulario, y soporte para futuras expansiones.
 - **v0.3.0**: Se agrega soporte para almacenamiento de datos en un fichero, validaciones, y generación de identificadores alfanuméricos únicos para los usuarios.
+- **v0.4.0**: Se optimizan las consultas al fichero `usuarios.txt`, nueva ventana con tabla de usuarios registrados, soporte para caracteres especiales y archivos de prueba incluidos.
 
-## Funcionalidades (hasta la versión 0.3.0)
+## Funcionalidades (hasta la versión 0.4.0)
 
 - **Formulario de inicio de sesión**: Solicita correo y contraseña del usuario. Ahora incluye mensajes específicos que indican:
     - Usuario no registrado.
@@ -27,6 +28,12 @@ Este proyecto es un simulador de login y registro en Java que implementa segurid
     Las entradas se limpian para eliminar comas antes de ser guardadas, evitando conflictos en el formato.
 - **Identificadores únicos**: Cada usuario registrado cuenta con un identificador alfanumérico único que se verifica para evitar duplicados.
 - **Alertas para mostrar datos**: En lugar de mostrar los datos del usuario directamente en el formulario, se despliega una alerta que contiene la información ingresada previamente por el usuario.
+- **Nueva ventana después de iniciar sesión**: Una vez que el usuario inicia sesión correctamente, se muestra una ventana con una tabla con la información (nombre, edad, correo) de todos los usuarios registrados previamente.
+- **Mejoras en consultas al archivo**: Optimización en el manejo y lectura de datos del archivo `usuarios.txt`.
+- **Soporte para caracteres especiales**: Aumenta la compatibilidad con caracteres poco usados, como acentos.
+- **Se incluyen dos archivos para realizar pruebas a este proyecto**: Con el fin de realizar pruebas se añaden los siguientes archivos
+    - `usuarios.txt`: Contiene usuarios previamente registrados.
+    - `contraseñas.txt`: Muestra las credenciales sin cifrar correspondientes a los usuarios registrados.
 
 ---
 
@@ -43,7 +50,7 @@ Se puede descargar la versión actual del proyecto en formato `.jar` desde la se
    java -jar [nombre y ruta del archivo]
    ```
 
-> [!NOTE]
+> [!IMPORTANT]
 > Asegúrese de tener Java JDK 23 instalado.
 
 ### Compilación desde el código fuente
@@ -54,6 +61,19 @@ En caso de que encuentres algún error o prefieras compilar el proyecto por ti m
 2. Abrir el proyecto en NetBeans IDE 23.
 3. Asegurarse de que el proyecto esté configurado para compilar con JDK 23.
 4. Compilar y ejecutar el proyecto desde NetBeans o exportar el archivo `.jar` para ejecutarlo manualmente.
+
+> [!IMPORTANT]
+> Asegúrese de tener Java JDK 23 y Apache NetBeans IDE 23 instalado.
+
+### Archivos de Prueba (v0.4.0)
+
+Esta versión (v0.4.0) incluye dos archivos para facilitar las pruebas del sistema:
+
+- `usuarios.txt`: Contiene usuarios previamente registrados.
+- `contraseñas.txt`: Muestra las credenciales sin cifrar correspondientes a los usuarios registrados.
+
+> [!IMPORTANT]
+> Es importante que el archivo de prueba `usuarios.txt` se encuentre en la misma ruta que el ejecutable `.jar`, si se desea probar el programa con este archivo.
 
 ---
 

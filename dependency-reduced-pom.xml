@@ -3,7 +3,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.securitysistem</groupId>
   <artifactId>SistemaDeSeguridad</artifactId>
-  <version>v0.3.0</version>
+  <version>v0.4.0</version>
   <build>
     <plugins>
       <plugin>
@@ -18,7 +18,7 @@
             <configuration>
               <transformers>
                 <transformer>
-                  <mainClass>com.securitysistem.sistemadeseguridad.SistemaDeSeguridad.Formulario1</mainClass>
+                  <mainClass>com.sistemadeseguridad.SistemaDeSeguridad.FormularioPrincipal</mainClass>
                 </transformer>
               </transformers>
             </configuration>
@@ -30,6 +30,6 @@
   <properties>
     <maven.compiler.release>23</maven.compiler.release>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <exec.mainClass>com.securitysistem.sistemadeseguridad.SistemaDeSeguridad.Formulario1</exec.mainClass>
+    <exec.mainClass>com.sistemadeseguridad.SistemaDeSeguridad.FormularioPrincipal</exec.mainClass>
   </properties>
 </project>

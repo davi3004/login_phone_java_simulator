@@ -1,14 +1,15 @@
-package com.securitysistem.interfaces;
+package com.sistemadeseguridad.Interfaces;
 
-import com.securitysistem.sistemadeseguridad.SistemaDeSeguridad.Formulario1;
+import com.sistemadeseguridad.SistemaDeSeguridad.FormularioPrincipal;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
-import com.security.tools.Usuario;
+import com.sistemadeseguridad.Tools.Usuario;
+import com.sistemadeseguridad.Tools.Modelos;
 
 public class IniciarSesion extends javax.swing.JPanel {
 
-    public IniciarSesion(Formulario1 formulario) {
+    public IniciarSesion(FormularioPrincipal formulario) {
         initComponents();
     }
 
@@ -187,16 +188,11 @@ public class IniciarSesion extends javax.swing.JPanel {
                     );
                 }
                 else {
-
-                    String nombreUsuario = Usuario.getNombreUsuario(correo);
+                    Modelos.setCorreo(correo);
                     
-                    javax.swing.JOptionPane.showMessageDialog(
-                            this,
-                            "¡Bienvenido/a " + nombreUsuario + "!",
-                            "Inicio de sesión exitoso",
-                            javax.swing.JOptionPane.INFORMATION_MESSAGE
-                    );
-
+                    Directorio segundoDirectorio = new Directorio();
+                    segundoDirectorio.setVisible(true);
+                    
                     correoField.setText("");
                     passwordField.setText("");
                 }

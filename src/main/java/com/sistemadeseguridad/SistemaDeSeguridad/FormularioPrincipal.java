@@ -1,17 +1,14 @@
-package com.securitysistem.sistemadeseguridad.SistemaDeSeguridad;
+package com.sistemadeseguridad.SistemaDeSeguridad;
 
+import com.sistemadeseguridad.Interfaces.IniciarSesion;
+import com.sistemadeseguridad.Interfaces.Registro;
 import com.formdev.flatlaf.intellijthemes.FlatArcDarkIJTheme;
-import com.securitysistem.interfaces.*;
 import java.awt.BorderLayout;
 import javax.swing.JPanel;
 
-import java.io.*;
-import java.util.*;
-import java.time.Year;
+public class FormularioPrincipal extends javax.swing.JFrame {
 
-public class Formulario1 extends javax.swing.JFrame {
-
-    public Formulario1() {
+    public FormularioPrincipal() {
         initComponents();
         setLocationRelativeTo(null);
         IniciarSesion iniciarSesion = new IniciarSesion(this);
@@ -42,10 +39,8 @@ public class Formulario1 extends javax.swing.JFrame {
         setTitle(" Simulador de login y registro");
         setAlwaysOnTop(true);
         setLocation(new java.awt.Point(0, 0));
-        setMaximumSize(new java.awt.Dimension(400, 650));
         setMinimumSize(new java.awt.Dimension(400, 650));
         setName("Frame"); // NOI18N
-        setPreferredSize(new java.awt.Dimension(400, 650));
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -103,11 +98,7 @@ public class Formulario1 extends javax.swing.JFrame {
         cambiarPanel(initsession);
     }//GEN-LAST:event_iniciarsesionbtn2ActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String args[]) {
-        /* Set the Custom look and feel */
 
         try {
             FlatArcDarkIJTheme.setup();
@@ -118,7 +109,7 @@ public class Formulario1 extends javax.swing.JFrame {
         }
 
         java.awt.EventQueue.invokeLater(() -> {
-            new Formulario1().setVisible(true);
+            new FormularioPrincipal().setVisible(true);
         }
         );
     }

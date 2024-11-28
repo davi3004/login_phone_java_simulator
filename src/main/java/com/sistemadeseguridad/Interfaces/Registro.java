@@ -1,15 +1,15 @@
-package com.securitysistem.interfaces;
+package com.sistemadeseguridad.Interfaces;
 
-import com.securitysistem.sistemadeseguridad.SistemaDeSeguridad.Formulario1;
+import com.sistemadeseguridad.SistemaDeSeguridad.FormularioPrincipal;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
 import java.io.*;
-import com.security.tools.Usuario;
+import com.sistemadeseguridad.Tools.Usuario;
 
 public class Registro extends javax.swing.JPanel {
 
-    public Registro(Formulario1 formulario) {
+    public Registro(FormularioPrincipal formulario) {
         initComponents();
     }
 
@@ -224,7 +224,7 @@ public class Registro extends javax.swing.JPanel {
                 }
                 String hashedPassword = hexString.toString();
 
-                try (FileWriter fw = new FileWriter("usuarios.txt", true); BufferedWriter bw = new BufferedWriter(fw)) {
+                try (FileWriter escritorDeBufer = new FileWriter("usuarios.txt", true); BufferedWriter bw = new BufferedWriter(escritorDeBufer)) {
 
                     bw.write(Usuario.toCsvLine(nombre, correo, Integer.parseInt(edad), hashedPassword));
 

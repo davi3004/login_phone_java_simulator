@@ -1,4 +1,4 @@
-package com.security.tools;
+package com.sistemadeseguridad.Tools;
 
 import java.io.*;
 import java.util.HashSet;
@@ -6,6 +6,8 @@ import java.util.Random;
 import java.util.Set;
 
 public class Usuario {
+
+    
 
     private String id;
     private String nombre;
@@ -21,12 +23,12 @@ public class Usuario {
         this.id = generarIdUnico();
     }
 
-    public String getId() {
+    public String obtenerId() {
         return id;
     }
 
     public static String toCsvLine(String nombre, String correo, int edad, String passwordHash) {
-        String id = new Usuario(nombre, correo, edad, passwordHash).getId();
+        String id = new Usuario(nombre, correo, edad, passwordHash).obtenerId();
 
         return String.format("%s,%s,%s,%d,%s%n", id, nombre, correo, edad, passwordHash);
     }
@@ -40,11 +42,11 @@ public class Usuario {
             return false;
         }
 
-        try (BufferedReader br = new BufferedReader(new FileReader("usuarios.txt"))) {
+        try (BufferedReader lectorDeBuffer = new BufferedReader(new InputStreamReader(new FileInputStream(archivo), "UTF-8"))) {
 
             String line;
 
-            while ((line = br.readLine()) != null) {
+            while ((line = lectorDeBuffer.readLine()) != null) {
                 String[] datos = line.split(",");
                 if (datos.length < 5) {
                     System.err.println("Línea mal formateada: " + line);
@@ -72,11 +74,11 @@ public class Usuario {
             return false;
         }
 
-        try (BufferedReader br = new BufferedReader(new FileReader("usuarios.txt"))) {
+        try (BufferedReader lectorDeBuffer = new BufferedReader(new InputStreamReader(new FileInputStream(archivo), "UTF-8"))) {
 
             String line;
 
-            while ((line = br.readLine()) != null) {
+            while ((line = lectorDeBuffer.readLine()) != null) {
                 String[] datos = line.split(",");
                 if (datos.length >= 5 && datos[2].equals(correo) && datos[4].trim().equals(passwordHash)) {
                     return true;
@@ -92,7 +94,7 @@ public class Usuario {
         return false;
     }
 
-    public static String getNombreUsuario(String correo) {
+    public static String obtenerNombreUsuario(String correo) {
 
         File archivo = new File("usuarios.txt");
 
@@ -101,11 +103,11 @@ public class Usuario {
             return "";
         }
 
-        try (BufferedReader br = new BufferedReader(new FileReader("usuarios.txt"))) {
+        try (BufferedReader lectorDeBuffer = new BufferedReader(new InputStreamReader(new FileInputStream(archivo), "UTF-8"))) {
 
             String line;
 
-            while ((line = br.readLine()) != null) {
+            while ((line = lectorDeBuffer.readLine()) != null) {
                 String[] datos = line.split(",");
                 if (datos.length >= 3 && datos[2].equals(correo)) {
                     return datos[1];
@@ -165,11 +167,11 @@ public class Usuario {
             return ids;
         }
 
-        try (BufferedReader br = new BufferedReader(new FileReader(archivo))) {
+        try (BufferedReader lectorDeBuffer = new BufferedReader(new InputStreamReader(new FileInputStream(archivo), "UTF-8"))) {
 
             String line;
 
-            while ((line = br.readLine()) != null) {
+            while ((line = lectorDeBuffer.readLine()) != null) {
                 String[] datos = line.split(",");
                 if (datos.length >= 5) {
                     ids.add(datos[0]);
@@ -184,4 +186,36 @@ public class Usuario {
         return ids;
     }
 
+    public static Object[][] obtenerDatosUsuarios() {
+        java.util.ArrayList<Object[]> listaUsuarios = new java.util.ArrayList<>();
+
+        File archivo = new File("usuarios.txt");
+        if (!archivo.exists()) {
+            System.err.println("El archivo 'usuarios.txt' no existe.");
+            return new Object[0][0];
+        }
+
+        try (BufferedReader lectorDeBuffer = new BufferedReader(new InputStreamReader(new FileInputStream(archivo), "UTF-8"))) {
+            String line;
+            while ((line = lectorDeBuffer.readLine()) != null) {
+                String[] datos = line.split(",");
+                if (datos.length >= 5) {
+
+                    Object[] usuario = new Object[]{
+                        datos[0],
+                        datos[1],
+                        datos[2],
+                        datos[3]
+                    };
+                    listaUsuarios.add(usuario);
+                }
+            }
+        }
+        catch (IOException e) {
+            System.err.println("Error al leer el archivo: " + e.getMessage());
+            return new Object[0][0];
+        }
+
+        return listaUsuarios.toArray(new Object[0][]);
+    }
 }
